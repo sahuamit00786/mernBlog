@@ -19,3 +19,13 @@ app.listen(process.env.PORT,()=>{
     console.log(`Server is running at ${process.env.PORT}`)
 })
 
+app.use((err,req,res,next)=>{
+    const statuscode = err.statuscode || 500;
+    const message = err.message || 'Internal Server Error';
+    res.status(statuscode).json({
+        success:false,
+        status:statuscode,
+        message:message
+    })
+})
+

@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 function authController()
 {
     return {
-        async signup(req,res)
+        async signup(req,res,next)
         {
             const {username,email,password} = req.body;
             if(!username || !password || !email)
@@ -21,7 +21,7 @@ function authController()
                 console.log(newUser)
                 res.json('Signup successful')
             } catch (error) {
-                res.status(500).json({message: error.message})
+                next(error)
             }
         }
     }
