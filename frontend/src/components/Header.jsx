@@ -2,7 +2,6 @@ import { Navbar,TextInput,Button } from "flowbite-react"
 import { Link, useLocation } from "react-router-dom"
 import { FaSearch } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = () => {
 
