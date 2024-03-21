@@ -1,0 +1,1 @@
+1) always use return while validating anything in backend in if() condition

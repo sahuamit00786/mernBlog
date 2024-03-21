@@ -1,5 +1,7 @@
 import { User } from "../models/user.model.js";
 import bcrypt from 'bcryptjs'
+import { errorHandler } from "../utils/error.js";
+import jwt from "jsonwebtoken";
 
 function authController()
 {
@@ -23,7 +25,41 @@ function authController()
             } catch (error) {
                 next(error)
             }
-        }
+        },
+
+        async signin(req,res,next)
+        {
+            const {username,password} = req.body;
+            if(!username ||!password)
+            {
+                next(errorHandler(400,' All fields are required'))
+            }
+           
+            try {
+                const validUser = await User.findOne({username})     
+                if(!validUser)
+                {
+                    return next(errorHandler(400,'User not found'))
+                }
+                console.log(validUser)
+                const validPassword = bcrypt.compareSync(password, validUser.password)
+                if(!validPassword)
+                {
+                    return next(errorHandler(400,'Invalid password'))
+                }
+
+                // provide a token to the user
+
+                const token = jwt.sign({id: validUser._id},process.env.JWT_SECRET)
+                res.status(200).cookie('access_token',token,{
+                    httpOnly: true,
+                }).json(validUser)
+
+            } catch (error) {
+                
+            }
+        }   
+
     }
 }
 
