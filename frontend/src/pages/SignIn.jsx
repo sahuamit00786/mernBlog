@@ -2,6 +2,7 @@ import { Link,useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { signInSuccess,signInFailure,signInStart } from "../redux/user/userSlice"
 import { useDispatch, useSelector } from "react-redux"
+import OAuth from "../components/OAuth"
 
 const SignIn = () => {
 
@@ -64,6 +65,9 @@ const SignIn = () => {
             loading?"loading..":"Sign In"
           }
         </button>
+        
+        </form>
+        <OAuth/>
         <div className="text-center mt-4">
           <Link to='/signup'>
          <span className="text-sm text-pink-600 hover:underline">Dont have account</span>
@@ -74,7 +78,6 @@ const SignIn = () => {
             {error}
           </div>
         }
-        </form>
       </div>
       </div>
     </>

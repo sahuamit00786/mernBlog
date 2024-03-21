@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-
+import OAuth from "../components/OAuth"
 
 const SignUp = () => {
 
@@ -71,6 +71,8 @@ const SignUp = () => {
             loading ? <span>Loading..</span> : <span>Sign Up</span>
           }
         </button>
+        </form>
+        <OAuth/>
         <div className="text-center mt-2">
           <Link to='/signin'>
            <span className="text-sm text-pink-600 hover:underline">Already have account</span>
@@ -81,7 +83,6 @@ const SignUp = () => {
             {error}
           </div>
         }
-        </form>
       </div>
       </div>
     </>
