@@ -3,3 +3,9 @@
 OAuth ->
 
 .env file is never used inside src folder
+<input type="file" accept='image/*' />  -> accepes only image
+
+* <input hidden type="file" accept='image/*' ref={fileRef} onChange={handleImageChange} />
+  <img className='w-[100px] h-[100px] p-2 my-3 border rounded-full object-contain' onClick={()=>fileRef.current.click()} src={imageFileUrl || currentUser.profilePicture} alt="profileImage" />
+
+  to make image as an file input

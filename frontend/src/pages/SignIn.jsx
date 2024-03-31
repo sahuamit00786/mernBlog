@@ -49,14 +49,14 @@ const SignIn = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-       <div className=" mx-auto w-[300px] mt-[120px] border shadow-lg p-8">
+      <div className="flex min-h-screen justify-center items-center">
+       <div className=" mx-auto w-[300px] mt-[10px] border shadow-lg p-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col py-2">
-          <label className="py-1 font-medium" >Username</label>
-          <input id="username" onChange={handleChange} type="text" placeholder="Enter your username" className="py-1 px-2 rounded-[5px]" />
-        </div>
-        <div className="flex flex-col py-2">
+           <label className="py-1 font-medium" >Username</label>
+           <input id="username" onChange={handleChange} type="text" placeholder="Enter your username" className="py-1 px-2 rounded-[5px]" />
+          </div>
+        <div className="flex flex-col pb-4">
           <label className="py-1 font-medium">Password</label>
           <input id="password" onChange={handleChange} type="password" placeholder="Enter your password" className="py-1 px-2 rounded-[5px]" />
         </div>

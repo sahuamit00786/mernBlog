@@ -41,7 +41,7 @@ function authController()
                 {
                     return next(errorHandler(400,'User not found'))
                 }
-                console.log(validUser)
+                // console.log(validUser)
                 const validPassword = bcrypt.compareSync(password, validUser.password)
                 if(!validPassword)
                 {

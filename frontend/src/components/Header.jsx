@@ -1,11 +1,16 @@
-import { Navbar,TextInput,Button } from "flowbite-react"
+import { Navbar,TextInput,Button,Avatar, Dropdown } from "flowbite-react"
 import { Link, useLocation } from "react-router-dom"
 import { FaSearch } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 const Header = () => {
 
     const path = useLocation().pathname;
+    const dispatch = useDispatch()
+    const{currentUser} = useSelector(state=>state.user)
+    console.log(currentUser)
 
   return (
     <>
@@ -25,14 +30,29 @@ const Header = () => {
             <FaSearch color="gray"/>
           </Button>
           <div className="flex flex-row gap-3">
-            <Button color='gray'>
+            <Button onClick={()=>dispatch(toggleTheme())} color='gray'>
                 <FaMoon />
             </Button>
-            <Link to='/signin'>
-                <Button gradientDuoTone='purpleToBlue'>
-                    Sign in
-                </Button>
-            </Link>
+            {
+              currentUser?
+              <Dropdown inline label={<Avatar rounded alt="user" img={currentUser.profilePicture}/>} arrowIcon={false}>
+                <Dropdown.Header>
+                <span className="block text-sm">@{currentUser.username}</span>
+                </Dropdown.Header>
+                <Dropdown.Item>
+                  <Link to={'/dashboard?tab=profile'}>
+                    Profile
+                  </Link>
+                </Dropdown.Item>
+                <Dropdown.Item>Log Out</Dropdown.Item>
+              </Dropdown>
+              :
+              <Link to='/signin'>
+                  <Button gradientDuoTone='purpleToBlue'>
+                      Sign in
+                  </Button>
+              </Link>
+            }
             <Navbar.Toggle />
           </div>
 

@@ -51,8 +51,8 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center">
-       <div className=" mx-auto w-[300px] mt-[120px] border shadow-lg p-8">
+      <div className="flex min-h-screen justify-center items-center">
+       <div className=" mx-auto w-[300px] border shadow-lg p-8">
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col py-2">
           <label className="py-1 font-medium" >Username</label>
