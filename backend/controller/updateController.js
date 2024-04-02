@@ -48,7 +48,7 @@ function updateController()
         },
         async deleteUser(req,res,next)
         {
-            console.log()
+            console.log(req.user)
             if(req.user.id !== req.params.userId)
             {
                 return next(errorHandler(401, 'You are not authorized dndjbchjscjs to delete this user'))
@@ -59,6 +59,17 @@ function updateController()
             } catch (error) {
                 next(errorHandler(401, 'You are not authorized to delete this user'))
                 console.log(error)
+            }
+        },
+        async signOut(req,res,next)
+        {
+            try {
+                res
+                .clearCookie('access_token')
+                .status(200)
+                .json('User has been signed out');
+            } catch (error) {
+                 next(error);
             }
         }
     }

@@ -1,16 +1,33 @@
 import { Navbar,TextInput,Button,Avatar, Dropdown } from "flowbite-react"
 import { Link, useLocation } from "react-router-dom"
-import { FaSearch } from "react-icons/fa";
+import {FaSearch } from "react-icons/fa";
 import { FaMoon } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
+import { signOutSuccess } from "../redux/user/userSlice";
 
 const Header = () => {
 
     const path = useLocation().pathname;
     const dispatch = useDispatch()
     const{currentUser} = useSelector(state=>state.user)
-    console.log(currentUser)
+    // console.log(currentUser)
+
+    const handleSignOut = async () => {
+    try {
+      const res = await fetch('/api/signout', {
+        method: 'POST',
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(signOutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -44,7 +61,9 @@ const Header = () => {
                     Profile
                   </Link>
                 </Dropdown.Item>
-                <Dropdown.Item>Log Out</Dropdown.Item>
+                <Dropdown.Item>
+                  <span onClick={handleSignOut}>Log Out</span>
+                </Dropdown.Item>
               </Dropdown>
               :
               <Link to='/signin'>

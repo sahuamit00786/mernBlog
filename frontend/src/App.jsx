@@ -6,6 +6,8 @@ import Dashboard from './pages/Dashboard'
 import SignUp from './pages/SignUp'
 import Header from './components/Header'
 import PrivateRoute from './pages/PrivateRoute'
+import CreatePost from './pages/CreatePost'
+import OnlyAdminPrivate from './pages/OnlyAdminPrivate'
 
 const App = () => {
   return (
@@ -17,8 +19,12 @@ const App = () => {
         <Route element={<PrivateRoute/>}>
           <Route path='/dashboard' element={<Dashboard/>} />
         </Route>
+        <Route element={<OnlyAdminPrivate/>}>
+          <Route path='/createpost' element={<CreatePost/>} />
+        </Route>
         <Route path='/signin' element={<SignIn/>} />
         <Route path='/signup' element={<SignUp/>} />
+        <Route path='/createpost' element={<CreatePost/>} />
       </Routes>
     </BrowserRouter>
   )
