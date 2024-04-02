@@ -15,6 +15,7 @@ router.put('/api/update/:userId',verifyToken,updateController().updateProfile)  
 
 // createPost routes
 router.post('/api/createpost',verifyToken,creatPostcontroller().createPost)
+router.get('/api/getPosts',creatPostcontroller().getPosts)
 
 
 export default router
