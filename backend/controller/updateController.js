@@ -42,9 +42,24 @@ function updateController()
               console.log(updateUser._doc)
               res.status(200).json(rest)
             } catch (error) {
-                
+                next(errorHandler(401, 'You are not authorized to update this user'))
             }
 
+        },
+        async deleteUser(req,res,next)
+        {
+            console.log()
+            if(req.user.id !== req.params.userId)
+            {
+                return next(errorHandler(401, 'You are not authorized dndjbchjscjs to delete this user'))
+            }
+            try {
+                await User.findByIdAndDelete(req.params.userId)
+                res.status(200).json({message: 'User deleted successfully'})
+            } catch (error) {
+                next(errorHandler(401, 'You are not authorized to delete this user'))
+                console.log(error)
+            }
         }
     }
 }
